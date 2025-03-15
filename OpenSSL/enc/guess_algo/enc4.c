@@ -16,7 +16,7 @@ void handle_errors(){
 
 
 // COMMAND:
-// ./enc plaintext.txt 0123456789ABCDEF 1111111111111111 ciphertext.txt aes-128-cbc
+// ./enc plaintext.txt 0123456789ABCDEF 0123456789ABCDEF ciphertext.txt aes-128-cbc
 
 int main(int argc, char **argv) {
 
@@ -70,7 +70,7 @@ int main(int argc, char **argv) {
 
 
     // CHANGE: retrieving the encryption algorithm (starting by the name passed as the last parameter)
-    EVP_CIPHER *cipher_algorithm = EVP_get_cipherbyname(argv[5]);   // This is the RELEVANT function !!!
+    EVP_CIPHER *cipher_algorithm = (EVP_CIPHER *) EVP_get_cipherbyname(argv[5]);
     if (!cipher_algorithm) {
         fprintf(stderr, "Unknown cipher: %s\n", argv[5]);
         exit(EXIT_FAILURE);

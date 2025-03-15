@@ -40,9 +40,9 @@ unsigned char *base64_decode(const char *input, int *output_len) {
 
 
 int main() {
-    const char b64_ciphertext[] = "jyS3NIBqenyCWpDI2jkSu+z93NkDbWkUMitg2Q==";  // Base64 encoded (every 3 bytes of original data are represented with 4 Base64 characters)
-    const char key_hex[] = "0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF";
-    const char iv_hex[] = "11111111111111112222222222222222";
+    unsigned char b64_ciphertext[] = "jyS3NIBqenyCWpDI2jkSu+z93NkDbWkUMitg2Q==";  // Base64 encoded (every 3 bytes of original data are represented with 4 Base64 characters)
+    unsigned char key_hex[] = "0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF";
+    unsigned char iv_hex[] = "11111111111111112222222222222222";
 
     // Convert the hex key into bytes
     unsigned char key[strlen(key_hex)/2], iv[strlen(iv_hex)/2];
