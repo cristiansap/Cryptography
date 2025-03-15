@@ -116,7 +116,7 @@ int main() {
 
     // Iterate over all available encryption algorithms
     OpenSSL_add_all_ciphers();
-    OBJ_NAME_do_all_sorted(OBJ_NAME_TYPE_CIPHER_METH, cipher_callback, (void *)&info);
+    OBJ_NAME_do_all_sorted(OBJ_NAME_TYPE_CIPHER_METH, cipher_callback, (void *)&info);    // we can pass only one parameter to the callback, so a struct is useful to pass more than one parameter
 
     free(ciphertext);
     
