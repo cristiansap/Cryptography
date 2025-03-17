@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "err.h": "c",
+        "hmac.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
+}
