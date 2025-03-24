@@ -4,12 +4,13 @@
 #include <ctype.h>
 
 void remove_colons(char *str) {
-    int count = 0;
+    int count = 0, i = 0;
 
-    for (int i = 0; str[i] != '\0'; i++) {
+    while (str[i] != '\0') {
         if (str[i] != ':') {
             str[count++] = str[i];
         }
+        i++;
     }
 
     // Place the terminator character
