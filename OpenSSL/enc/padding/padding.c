@@ -16,7 +16,7 @@ int main() {
 
     // Instruction that disables padding
     // With the padding disabled, the plaintext MUST be a multiple of the block size
-    EVP_CIPHER_CTX_set_padding(ctx, 0);
+    EVP_CIPHER_CTX_set_padding(ctx,0);
 
     unsigned char plaintext[] = "This is the plaintext to encrypt."; //len 33
     unsigned char ciphertext[48];
