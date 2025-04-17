@@ -8,6 +8,8 @@ conn.recvuntil(b"Username: ")
 
 username = b"Cristia" + b"true" + (b"\x0c" * 12) + (b"\x0c" * 9)  # string construction: {'username=' + username} (16B in total) + {'true' + padding(12B)} (16B in total) + {padding(9B) + '&admin='} (16B in total)
 
+# REMARK: AES uses #PKCS7 padding (b"\x0c")
+
 # Block 0: 'username=Cristia'        -> 16 bytes
 # Block 1: 'true' + padding (12B)    -> 16 bytes
 # Block 2: padding (9B) + '&admin='  -> 16 bytes
