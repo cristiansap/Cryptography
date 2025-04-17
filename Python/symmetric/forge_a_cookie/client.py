@@ -7,7 +7,7 @@ conn = remote('130.192.5.212', 6521)
 
 print()
 print(conn.recvline().decode())
-name = b"Cristiannnnnnnnn"
+name = b"Cristiannnnnnnnn"  # choose a name in such a way that the plaintext_token is 32B long
 conn.sendline(name)    # equal to write: conn.sendline(b"Cristian")
 
 conn.recvuntil(b"This is your token: ")
