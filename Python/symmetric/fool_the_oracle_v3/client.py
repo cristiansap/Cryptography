@@ -73,7 +73,7 @@ def main():
             elif block_number == 2:
                 data = random_padding + flag.encode()[17+(i%16):] + guess.encode() + pad   # random padding + flag (guessed so far, starting from the 17th char) + guess (current char to guess) + "AA..A" + flag (shifted 1 byte at a time) 
 
-            # REMARK:   if block_number == 1, 'data' includes the flag guessed so far starting from the 2nd char because the first block (16B) has already been guessed, then in order to have one free position, I only take from the 2nd to the 16th guessed char so that the 17th char of the flag is shifted to the left and can be now guessed
+            # REMARK:   if block_number == 1, the 'data' includes the flag guessed so far starting from the 2nd char because the first block (16B) has already been guessed, then in order to have one free position, I only take from the 2nd to the 16th guessed char so that the 17th char of the flag is shifted to the left and can be now guessed
             # REMARK_2: if block_number == 2, the concept remains the same, but with the difference that now the first TWO blocks (16B + 16B) has already been guessed
 
             conn.sendline(data.hex().encode())
