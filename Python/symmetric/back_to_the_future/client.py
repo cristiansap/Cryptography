@@ -33,9 +33,9 @@ for delay in range(32, 289):    # expires - admin_expire_date = (now + delay) - 
     # Try to build a plaintext date that matches the server-side control using different 'delay' values
     forged_original_expires = str(now + days_to_seconds(delay)).encode()
 
-    forged_expires = bytes([a ^ b for a, b in zip(forged_original_expires, keystream)])
+    forged_encrypted_expires = bytes([a ^ b for a, b in zip(forged_original_expires, keystream)])
 
-    forged_cookie = encrypted_cookie[:22] + forged_expires + encrypted_cookie[32:]
+    forged_cookie = encrypted_cookie[:22] + forged_encrypted_expires + encrypted_cookie[32:]
     forged_cookie = bytes_to_long(forged_cookie)
 
     res = session.get(f"http://130.192.5.212:6522/flag?nonce={nonce}&cookie={forged_cookie}")
