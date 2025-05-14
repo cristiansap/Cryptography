@@ -1,0 +1,62 @@
+from Crypto.Util.number import long_to_bytes
+from gmpy2 import isqrt
+
+
+def fermat(n):
+    print("init")
+
+    a = isqrt(n)
+    b = a
+    b2 = pow(a,2) - n
+
+    print("a= "+str(a))
+    print("b= " + str(b))
+
+    print("b2=" + str(b2))
+    print("delta-->" + str(pow(b, 2) - b2 % n)+"\n-----------")
+    print("iterate")
+    i = 0
+
+    while True:
+        if b2 == pow(b,2):
+            print("found at iteration "+str(i))
+            break
+        else:
+            a +=1
+            b2 = pow(a, 2) - n
+            b = isqrt(b2)
+        i+=1
+        print("iteration="+str(i))
+        print("a= " + str(a))
+        print("b= " + str(b))
+    print("b2 =" + str(b2))
+    print("delta-->" + str(pow(b, 2) - b2 % n) + "\n---------------------------")
+
+    p = a+b
+    q = a-b
+
+    return p,q
+
+if __name__ == '__main__':
+
+    e = 65537
+    n = 60509355275518728792864353034381323203712352065221533863094540755630035742080855136016830887120470658395455751858380183285852786807229077435165810022519265154399424311072791755790585544921699474779996198610853766677088209156457859301755313246598035577293799853256065979074343370064111263698164125580000165237
+
+    # From the given code it immediately stands out that the two primes are close numbers since the second one is retrieved with the nextPrime() method
+    # => this means that I can use the Fermat factorization !!!
+
+    p,q = fermat(n)
+
+    print("p = "+str(p))
+    print("q = " + str(q))
+
+    print("\nTry to obtain 'd' starting from 'e' and 'N': ")
+    phi = (p-1) * (q-1)
+    d = pow(e, -1, phi)
+    print("d =", d)
+
+    c = 44695558076372490838321125335259117268430036823123326565653896322404966549742986308988778274388721345811255801305658387179978736924822440382730114598169989281210266972874387657989210875921956705640740514819089546339431934001119998309992280196600672180116219966257003764871670107271245284636072817194316693323
+
+    decrypted_msg = pow(c, d, n)
+    print("FLAG:", long_to_bytes(decrypted_msg).decode())
+    print()
