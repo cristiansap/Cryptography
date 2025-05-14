@@ -53,5 +53,5 @@ print("d =", d)
 c = c[0]
 
 decrypted_msg = pow(c, d, n1)
-print("FLAG:", long_to_bytes(decrypted_msg).decode())
+print("\nFLAG:", long_to_bytes(decrypted_msg).decode())
 print()
