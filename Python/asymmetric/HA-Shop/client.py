@@ -40,6 +40,11 @@ extra = b"&value=101"
 secret_len = 16     # the server uses a 16 byte SECRET
 new_tag, new_msg = hashpumpy.hashpump(tag, coupon_bytes, extra, secret_len)
 
+# tag: it is passed to set up the internal states
+# coupon_bytes: necessary to reconstruct the old message + the added data
+# extra: it represents the additional data I want to append
+# secret_len: necessary to reconstruct the correct padding of the old message
+
 print("NEW TAG:", new_tag)
 print("NEW COUPON:", new_msg)
 
