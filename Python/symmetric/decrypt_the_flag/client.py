@@ -12,9 +12,9 @@ encrypted_secret = conn.recvline().strip().decode()
 print(encrypted_secret)
 print()
 
-# REMARK: the flaw here is that the server encrypts all the messages using always the same nonce, BUT THE NONCE SHOULD BE USED ONLY ONCE !!!
-#         Moreover, the starting key is fixed, it is never changing !!!
-#         These vulnerabilities allow me to encrypt two different messages and recover both the plaintexts, since the keystream is always the same.
+# NOTE: the flaw here is that the server encrypts all the messages using always the same nonce, BUT THE NONCE SHOULD BE USED ONLY ONCE !!!
+#       Moreover, the starting key is fixed, it is never changing !!!
+#       These vulnerabilities allow me to encrypt two different messages and recover both the plaintexts, since the keystream is always the same.
 
 # REASONING:
 #            C1 = P1 ⊕ KeyStream
@@ -28,7 +28,7 @@ conn.sendline(b'y')     # ask for a second encryption
 
 conn.recvuntil(b"What is the message? ")
 conn.sendline(b'A' * 46)    # a message UNDER MY CONTROL which is as long as the flag (namely 46B) 
-                            # => this is due to the fact that the length of the keystream is exactly equal to the length of the message to be encrypted
+                            # => this is due to the fact that the length of the keystream must be exactly equal to the length of the flag that I will decrypt
 second_enc_message = conn.recvline().strip().decode()
 print("Second encryption:")
 print(second_enc_message)
