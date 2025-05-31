@@ -23,6 +23,19 @@ encrypted_flag = conn.recvline().strip().decode()
 print("Encrypted flag =", encrypted_flag)     # print the encrypted flag
 
 
+# NOTE: the flaw here is that the random number generator is seeded using int(time()), which only changes once per second.
+#       This means that if two messages are encrypted within the same second, the same nonce is used !!!
+#       Moreover, the starting key is fixed, it is never changing !!!
+#       These vulnerabilities allow me to encrypt two different messages and recover both the plaintexts, but I have to be fast enough
+#       to encrypt both messages within the same second.
+
+# REASONING:
+#            C1 = P1 ⊕ KeyStream
+#            C2 = P2 ⊕ KeyStream
+#         => a = C1 ⊕ C2 = P1 ⊕ P2
+#         => flag = a ⊕ P2 = P1 ⊕ P2 ⊕ P2 = P1
+
+
 encrypted_msg_bytes = bytes.fromhex(encrypted_msg)
 encrypted_flag_bytes = bytes.fromhex(encrypted_flag)
 
