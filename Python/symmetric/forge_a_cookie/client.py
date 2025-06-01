@@ -8,7 +8,7 @@ conn = remote('130.192.5.212', 6521)
 print()
 print(conn.recvline().decode())
 name = b"Cristiannnnnnnnn"  # choose a name in such a way that the plaintext_token is 32B long
-conn.sendline(name)    # equal to write: conn.sendline(b"Cristian")
+conn.sendline(name)    # equal to write: conn.sendline(b"Cristiannnnnnnnn")
 
 conn.recvuntil(b"This is your token: ")
 cookie = conn.recvline().strip().decode()
@@ -37,11 +37,11 @@ plaintext_token = json.dumps({
 keystream = bytes([n ^ t for (n,t) in zip(plaintext_token.encode(), enc_token)])
 
 forged_token = json.dumps({
-    "username": "C",   # I don't care about the username, it's not important, I only care about its length
+    "username": "C",   # I don't care about the username, it's not important, I only care about its length (since the forged_token must be 32B long, i.e. equal to the key computed at server side)
     "admin": True
 })
 
-# Since the keystream is as long as the original plaintext_token, the forged_token must have the same length as the plaintext_token
+# Since the keystream is as long as the original plaintext_token, the forged_token must have the same length as the plaintext_token (namely 32B)
 if len(plaintext_token) != len(forged_token):
     print(f"\nThe two tokens must have the same length: {len(plaintext_token)}, {len(forged_token)}")
 
