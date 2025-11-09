@@ -30,13 +30,13 @@ Implemented attacks:
 - **Common modulus attack** (same modulus, different exponents)  
 - **Common prime attacks** (shared prime factors across keys)  
 - **Hastad’s broadcast attack** (low-exponent broadcast vulnerability)  
-- **Low public exponent attacks** (issues with small 'e' values)  
+- **Low public exponent attacks** (issues with small *e* values)  
 - **LSB oracle**
 
 ### Hash functions
 Implemented attacks:
 - **Length extension attacks** (for iterative hash constructions like MD5/SHA family)  
-- **Wang attack for collisions** — implemented in Python to illustrate collision techniques against certain hash constructions.
+- **Wang attack for collisions** — against MD4.
 
 ---
 
