@@ -1,8 +1,8 @@
-# Cryptography CTFs — Collection of write-ups & challenge implementations
+# Cryptography CTFs
 
-This repository contains write-ups and implementations of Cryptography CTF challenges. It documents and demonstrates a variety of cryptographic attacks (both theoretical and practical), together with working exploit scripts and challenge implementations used for learning.
+## Collection of write-ups & challenge implementations
 
-> **Note:** examples and data are for educational purposes only. Do not use these techniques on production systems or without explicit authorization.
+This repository contains write-ups and implementations of Cryptography CTF challenges. It documents a variety of cryptographic attacks and scripts used for learning.
 
 ---
 
